@@ -98,6 +98,8 @@ public class Sanmoku extends Activity implements TextWatcher
     	LinearLayout resultArea = (LinearLayout)findViewById(R.id.search_result_area);
         resultArea.removeAllViews();
         
+        TextView label = (TextView) this.findViewById(R.id.label);
+        
         if(key.length() > 0) { 
             for(net.reduls.sanmoku.Morpheme e : net.reduls.sanmoku.Tagger.parse(key)) {
                 TextView txt = new TextView(this);
@@ -105,9 +107,9 @@ public class Sanmoku extends Activity implements TextWatcher
                 txt.setText(spannable, TextView.BufferType.SPANNABLE);
                 //String word = new String(spannable, TextView.BufferType.SPANNABLE);
                 resultArea.addView(txt); //結果の表示
+                //label.setText(e.feature);
+                label.setText(e.surface);
             }
         }
-        TextView label = (TextView) this.findViewById(R.id.label);
-        label.setText("この曲の季節は冬です");
 	}
 }
