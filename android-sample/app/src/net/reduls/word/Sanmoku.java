@@ -21,8 +21,9 @@ import android.widget.Toast;
 public class Sanmoku extends Activity implements TextWatcher
 {
 	//public String noun;
-	public StringBuilder sb = new StringBuilder();
-	public StringBuilder noun = new StringBuilder();
+	public StringBuilder sb = new StringBuilder(); //歌詞読み込み用
+	public StringBuilder noun = new StringBuilder(); //名詞抽出用
+	public int total = 0; //名詞の総数を記録
 	
     /** Called when the activity is first created. */
     @Override
@@ -116,8 +117,10 @@ public class Sanmoku extends Activity implements TextWatcher
                 //名詞を抽出
                 if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
                 	noun.append(e.surface + "　");
+                	total++;
                 }
                 label.setText(new String(noun));
+                //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれること
             }
         }
 	}//解析ボタンクリックした処理終わり
