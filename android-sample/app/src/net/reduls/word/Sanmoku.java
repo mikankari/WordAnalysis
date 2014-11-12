@@ -113,15 +113,15 @@ public class Sanmoku extends Activity implements TextWatcher
                 resultArea.addView(txt); //結果の表示
                 //e.surface　は　元の単語
                 //e.feature　は　品詞
-                //label.setText(e.feature);
-                //label.setText(e.surface);
-                //label.setText(new String(sb));
                 //名詞を抽出
-                if (e.feature.contains("名詞")) {//一致が無い場合-1を返すので-1で無いとき
+                if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
                 	noun.append(e.surface + "　");
                 }
                 label.setText(new String(noun));
             }
         }
-	}
+	}//解析ボタンクリックした処理終わり
+	//tf法
+	//単語の頻度/文章で出現する総単語数
+	
 }
