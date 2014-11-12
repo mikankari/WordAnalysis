@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 public class Sanmoku extends Activity implements TextWatcher
 {
+	public String noun;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -107,8 +109,16 @@ public class Sanmoku extends Activity implements TextWatcher
                 txt.setText(spannable, TextView.BufferType.SPANNABLE);
                 //String word = new String(spannable, TextView.BufferType.SPANNABLE);
                 resultArea.addView(txt); //結果の表示
+                //e.surface　は　元の単語
+                //e.feature　は　品詞
                 //label.setText(e.feature);
-                label.setText(e.surface);
+                //label.setText(e.surface);
+                
+                //名詞を抽出
+                if (e.feature.indexOf("名詞") != -1) {//一致が無い場合-1を返すので-1で無いとき
+                	noun = noun.concat(e.surface);
+                }
+                label.setText(noun);
             }
         }
 	}
