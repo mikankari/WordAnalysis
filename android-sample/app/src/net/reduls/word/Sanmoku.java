@@ -119,7 +119,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 	noun.append(e.surface + "　");
                 	total++;
                 }
-                label.setText(new String(noun));
+                label.setText(new String(noun + "\n名詞は" + total + "個"));
                 //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれること
             }
         }
