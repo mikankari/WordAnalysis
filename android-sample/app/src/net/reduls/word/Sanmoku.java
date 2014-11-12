@@ -20,8 +20,9 @@ import android.widget.Toast;
 
 public class Sanmoku extends Activity implements TextWatcher
 {
-	public String noun;
+	//public String noun;
 	public StringBuilder sb = new StringBuilder();
+	public StringBuilder noun = new StringBuilder();
 	
     /** Called when the activity is first created. */
     @Override
@@ -76,7 +77,7 @@ public class Sanmoku extends Activity implements TextWatcher
 		InputStream is = null;
 		BufferedReader br = null;
 
-		StringBuilder sb = new StringBuilder();
+		//StringBuilder sb = new StringBuilder();
 		try {
 			try {
 				//歌詞を読み込む
@@ -114,15 +115,12 @@ public class Sanmoku extends Activity implements TextWatcher
                 //e.feature　は　品詞
                 //label.setText(e.feature);
                 //label.setText(e.surface);
-                
+                //label.setText(new String(sb));
                 //名詞を抽出
-                if (e.feature.contains("あああああ")) {//一致が無い場合-1を返すので-1で無いとき
-                	//sb.append(e.feature + "　");
-                }else{
-                	//sb.append(e.feature + "　");
+                if (e.feature.contains("名詞")) {//一致が無い場合-1を返すので-1で無いとき
+                	noun.append(e.surface + "　");
                 }
-                
-                label.setText(new String(sb));
+                label.setText(new String(noun));
             }
         }
 	}
