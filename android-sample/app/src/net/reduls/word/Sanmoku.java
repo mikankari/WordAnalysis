@@ -117,14 +117,14 @@ public class Sanmoku extends Activity implements TextWatcher
                 //名詞を抽出
                 if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
                 	noun.append(e.surface + "　");
-                	total++;
+                	total++; //名詞の総数カウント
                 }
                 label.setText(new String(noun + "\n名詞は" + total + "個"));
-                //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれること
+                //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれる
             }
         }
 	}//解析ボタンクリックした処理終わり
 	//tf法
-	//単語の頻度/文章で出現する総単語数
+	//単語の頻度／文章で出現する総単語数
 	
 }
