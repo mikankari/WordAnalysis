@@ -116,8 +116,10 @@ public class Sanmoku extends Activity implements TextWatcher
                 //label.setText(e.surface);
                 
                 //名詞を抽出
-                if (e.feature.contains("名詞") != true) {//一致が無い場合-1を返すので-1で無いとき
-                	sb.append(e.feature + "　");
+                if (e.feature.contains("あああああ")) {//一致が無い場合-1を返すので-1で無いとき
+                	//sb.append(e.feature + "　");
+                }else{
+                	//sb.append(e.feature + "　");
                 }
                 
                 label.setText(new String(sb));
