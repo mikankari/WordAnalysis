@@ -30,16 +30,17 @@ public class Sanmoku extends Activity implements TextWatcher
 	//可変長配列
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	//歌詞リスト
-	
-	public String[] category = new String[15];
-	
-
+	int array = 15;
+	public String[] category = new String[array];
+	//歌詞の分類
+	int spring = 0; int summer = 0; int autumn = 0; int winter = 0;
+	int sunny = 0; int cloudy = 0; int rain = 0; int snow = 0;
+	int morning = 0; int noon = 0; int night = 0; int midnight = 0;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	
     	//季節 spring summer autumn winter
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
     	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火";
@@ -157,6 +158,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 resultArea.addView(txt); //結果の表示
                 //e.surface　は　元の単語
                 //e.feature　は　品詞
+                
                 //名詞を抽出
                 if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
                 	Log.d("たしかめ","名詞と判断されました");
@@ -178,8 +180,52 @@ public class Sanmoku extends Activity implements TextWatcher
 	//tf法
 	//単語の頻度／文章で出現する総単語数
 	private void wordanalysisbotton_OnClick(View v) {
-		
-		
+	    for (int i = 0; i < noun_word.size(); i++){
+	        for (int j = 0; j <(array - 1); j++){
+                if (category[0].contains(noun_word.get(i))) {
+                	switch (j){
+                	//季節
+                	  case 0:
+                		  spring++;
+                		  break;
+                	  case 1:
+                		  summer++;
+                		  break;
+                	  case 2:
+                		  autumn++;
+                		  break;
+                	  case 3:
+                		  winter++;
+                	    break;
+                	  //天気
+                	  case 4:
+                		  sunny++;
+                		  break;
+                	  case 5:
+                		  cloudy++;
+                		  break;
+                  	  case 6:
+                  		  rain++;
+                  		  break;
+                  	  case 7:
+                  		  snow++;
+                  	    break;
+                  	  case 8:
+                  		  morning++;
+                  		  break;
+                  	  case 9:
+                  		  noon++;
+                  		  break;
+                  	  case 10:
+                    	  night++;
+                    	  break;
+                  	  case 11:
+                    	  midnight++;
+                    	  break;
+                	}
+                }
+	        }
+	      }
 	}
 
 }
