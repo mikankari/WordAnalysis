@@ -29,11 +29,38 @@ public class Sanmoku extends Activity implements TextWatcher
 	public String test = "test";
 	//可変長配列
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
+	//歌詞リスト
+	
+	public String[] category = new String[15];
+	
+
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	
+    	//季節 spring summer autumn winter
+    	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
+    	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火";
+    	category[2] = "秋　落ち葉　枯れ葉　九月　十月　十一月　ハロウィン";
+    	category[3] = "冬　枯れ木　雪　　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
+    	
+    	//天気sunny cloudy rain snow
+    	category[4] = "晴　太陽　日ざし　日差し　陽射し　日光　暑";
+    	category[5] = "曇り空　雲　曇り　積乱雲　霧";
+    	category[6] = "雨　レイン　台風";
+    	category[7] = "雪　冬　ソリ　スキー　暖炉";
+    	
+    	//時間 morning noon evening night midnight
+    	category[8] = "朝　明け方　太陽　日光　日差し　陽射し　おはよう";
+    	category[9] = "昼　昼下がり";
+    	category[10] = "夕　夕方　";
+    	category[11] = "夜　眠れない　おやすみ　朝まで　ナイト　ベッド　死　星　月　night";
+    	category[12] = "深夜　午前二時　ベッド　ナイト";
+    	//場所
+    	//山　海
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
@@ -65,6 +92,8 @@ public class Sanmoku extends Activity implements TextWatcher
 		});
 		//ボタンクリック処理ここまで
     }
+    
+	
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
     public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -136,10 +165,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 	Log.d("たしかめ","可変長配列に追加");
                 	noun_word.add(new String(e.surface));                	
                 }
-
                 //label.setText(new String(noun + "\n名詞は" + total + "個"));
-                
-                
                 //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれる
             }
             
@@ -155,4 +181,5 @@ public class Sanmoku extends Activity implements TextWatcher
 		
 		
 	}
+
 }
