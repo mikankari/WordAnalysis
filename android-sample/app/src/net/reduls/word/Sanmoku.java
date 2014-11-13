@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.res.AssetManager; //アセット
@@ -24,6 +25,9 @@ public class Sanmoku extends Activity implements TextWatcher
 	public StringBuilder sb = new StringBuilder(); //歌詞読み込み用
 	public StringBuilder noun = new StringBuilder(); //名詞抽出用
 	public int total = 0; //名詞の総数を記録
+	public String test;
+	//可変長配列
+	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	
     /** Called when the activity is first created. */
     @Override
@@ -41,12 +45,21 @@ public class Sanmoku extends Activity implements TextWatcher
             ((EditText)searchBar).setText(key);
         
         //ボタンクリック処理
-        //解析ボタン
+        //形態素解析ボタン
 		Button analysbtn = (Button) this.findViewById(R.id.analysbtn);
 		analysbtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				analysbotton_OnClick(v);
+			}
+		});
+		
+		//歌詞解析ボタン
+		Button analysisbtn = (Button) this.findViewById(R.id.analysisbtn);
+		analysisbtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				wordanalysisbotton_OnClick(v);
 			}
 		});
 		//ボタンクリック処理ここまで
@@ -71,7 +84,7 @@ public class Sanmoku extends Activity implements TextWatcher
         }
     }
     
-    //解析ボタンをクリックしたとき
+    //形態素ボタンをクリックしたとき
 	private void analysbotton_OnClick(View v) {
 		AssetManager as = getResources().getAssets();
 
@@ -117,14 +130,21 @@ public class Sanmoku extends Activity implements TextWatcher
                 //名詞を抽出
                 if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
                 	noun.append(e.surface + "　");
+                	noun_word.add("e.surface");
                 	total++; //名詞の総数カウント
                 }
-                label.setText(new String(noun + "\n名詞は" + total + "個"));
+                //label.setText(new String(noun + "\n名詞は" + total + "個"));
+                test = noun_word.get(100);
+                label.setText(new String("test"));
                 //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれる
             }
         }
 	}//解析ボタンクリックした処理終わり
+	//メモ
 	//tf法
 	//単語の頻度／文章で出現する総単語数
-	
+	private void wordanalysisbotton_OnClick(View v) {
+		
+		
+	}
 }
