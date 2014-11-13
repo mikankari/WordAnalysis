@@ -35,7 +35,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	//歌詞の分類
 	int spring = 0; int summer = 0; int autumn = 0; int winter = 0;
 	int sunny = 0; int cloudy = 0; int rain = 0; int snow = 0;
-	int morning = 0; int noon = 0; int night = 0; int midnight = 0;
+	int morning = 0; int noon = 0; int evening = 0; int night = 0; int midnight = 0;
 	
     /** Called when the activity is first created. */
     @Override
@@ -180,9 +180,10 @@ public class Sanmoku extends Activity implements TextWatcher
 	//tf法
 	//単語の頻度／文章で出現する総単語数
 	private void wordanalysisbotton_OnClick(View v) {
+		Log.d("たしかめ","ボタン押された");
 	    for (int i = 0; i < noun_word.size(); i++){
-	        for (int j = 0; j <(array - 1); j++){
-                if (category[0].contains(noun_word.get(i))) {
+	        for (int j = 0; j <(array - 3); j++){
+                if (category[j].contains(noun_word.get(i))) {
                 	switch (j){
                 	//季節
                 	  case 0:
@@ -197,7 +198,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 	  case 3:
                 		  winter++;
                 	    break;
-                	  //天気
+                	//天気
                 	  case 4:
                 		  sunny++;
                 		  break;
@@ -210,6 +211,7 @@ public class Sanmoku extends Activity implements TextWatcher
                   	  case 7:
                   		  snow++;
                   	    break;
+                  	//時間帯
                   	  case 8:
                   		  morning++;
                   		  break;
@@ -217,15 +219,20 @@ public class Sanmoku extends Activity implements TextWatcher
                   		  noon++;
                   		  break;
                   	  case 10:
+                  	      evening++;
+                  	      break;
+                  	  case 11:
                     	  night++;
                     	  break;
-                  	  case 11:
+                  	  case 12:
                     	  midnight++;
                     	  break;
                 	}
                 }
 	        }
 	      }
+	    TextView label2 = (TextView) this.findViewById(R.id.label2);
+	    label2.setText(summer + "");
 	}
 
 }
