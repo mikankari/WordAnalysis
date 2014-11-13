@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	public StringBuilder sb = new StringBuilder(); //歌詞読み込み用
 	public StringBuilder noun = new StringBuilder(); //名詞抽出用
 	public int total = 0; //名詞の総数を記録
-	public String test;
+	public String test = "test";
 	//可変長配列
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	
@@ -129,16 +130,23 @@ public class Sanmoku extends Activity implements TextWatcher
                 //e.feature　は　品詞
                 //名詞を抽出
                 if (e.feature.contains("名詞")) {//一致の場合trueが帰ってくる
+                	Log.d("たしかめ","名詞と判断されました");
                 	noun.append(e.surface + "　");
-                	noun_word.add("e.surface");
                 	total++; //名詞の総数カウント
+                	Log.d("たしかめ","可変長配列に追加");
+                	noun_word.add(new String(e.surface));                	
                 }
+
                 //label.setText(new String(noun + "\n名詞は" + total + "個"));
-                test = noun_word.get(100);
-                label.setText(new String("test"));
+                
+                
                 //label.setText(total+""); //label.setText(total);にするとエラー吐くから空の文字はいれる
             }
+            
         }
+        //test = noun_word.get(100);
+        label.setText(noun_word.get(120));
+        
 	}//解析ボタンクリックした処理終わり
 	//メモ
 	//tf法
