@@ -43,7 +43,7 @@ public class Sanmoku extends Activity implements TextWatcher
     {
     	//季節 spring summer autumn winter
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
-    	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火";
+    	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
     	category[2] = "秋　落ち葉　枯れ葉　九月　十月　十一月　ハロウィン";
     	category[3] = "冬　枯れ木　雪　　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
     	
@@ -173,7 +173,7 @@ public class Sanmoku extends Activity implements TextWatcher
             
         }
         //test = noun_word.get(100);
-        label.setText(noun_word.get(120));
+        label.setText("名詞の個数" + total + "最後の名詞（配列120番目）→" +noun_word.get(120) + "\n" + noun);
         
 	}//解析ボタンクリックした処理終わり
 	//メモ
@@ -232,7 +232,20 @@ public class Sanmoku extends Activity implements TextWatcher
 	        }
 	      }
 	    TextView label2 = (TextView) this.findViewById(R.id.label2);
-	    label2.setText(summer + "");
+	    //ためしに表示
+	    label2.setText(" 春の要素" + spring + 
+	    			   " 夏の要素" + summer + 
+	    			   " 秋の要素" + autumn +
+	    			   " 冬の要素" + winter +
+	    			   " 晴れの要素" + sunny +
+	    			   " 曇りの要素" + cloudy +
+	    			   " 雨の要素" + rain +
+	    			   " 雪の要素" + snow +
+	    			   " 朝の要素" + morning +
+	    			   " 昼の要素" + noon +
+	    			   "　夕方の要素" + evening +
+	    			   " 夜の要素" + night +
+	    			   " 深夜の要素" + midnight);
 	}
 
 }
