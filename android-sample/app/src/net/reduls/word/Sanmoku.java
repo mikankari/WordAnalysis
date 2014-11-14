@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.res.AssetManager; //アセット
@@ -32,25 +33,62 @@ public class Sanmoku extends Activity implements TextWatcher
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	//歌詞リスト
 	int array = 15;
+	int count = 0;
 	public String[] category = new String[array];
 	//歌詞の分類
-	public int [] season = new int[4];
-	//0...春　1...夏　2...秋　3...冬
-	public int [] weather = new int[4];
-	//0...晴れ　1...曇り　2...雨　3...雪
-	public int [] time = new int[5];
-	//0...朝　1...昼　2...夕　3...夜　4...深夜
+	public int[] season = new int[4]; //0...春　1...夏　2...秋　3...冬
+	public int[] weather = new int[4]; //0...晴れ　1...曇り　2...雨　3...雪
+	public int[] time = new int[5]; //0...朝　1...昼　2...夕　3...夜　4...深夜
+	
+	//単語
+	public ArrayList<String> spring = new ArrayList<String>();
+	public ArrayList<String> summer = new ArrayList<String>();
+	public ArrayList<String> autumn = new ArrayList<String>();
+	public ArrayList<String> winter = new ArrayList<String>();
+	
+	public ArrayList<String> sunny = new ArrayList<String>();
+	public ArrayList<String> cloudy = new ArrayList<String>();
+	public ArrayList<String> rain = new ArrayList<String>();
+	public ArrayList<String> snow = new ArrayList<String>();
+	
+	public ArrayList<String> morning = new ArrayList<String>();
+	public ArrayList<String> noon = new ArrayList<String>();
+	public ArrayList<String> evening = new ArrayList<String>();
+	public ArrayList<String> night = new ArrayList<String>();
+	public ArrayList<String> midnight = new ArrayList<String>();
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	Arrays.fill(season, 0);
+    	//Arrays.fill(season, 0);
     	//季節 spring summer autumn winter
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
     	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
     	category[2] = "秋　落ち葉　枯れ葉　九月　十月　十一月　ハロウィン";
     	category[3] = "冬　枯れ木　雪　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
+    	
+    	//↓これらはサーバーにおくのか？↓
+    	//季節　春
+    	spring.add(new String("春")); spring.add(new String("桜")); spring.add(new String("さくら"));
+    	spring.add(new String("サクラ")); spring.add(new String("三月")); spring.add(new String("四月"));
+    	spring.add(new String("五月")); spring.add(new String("蝶")); spring.add(new String("卒業"));
+    	//季節　夏
+    	summer.add(new String("夏")); summer.add(new String("梅雨")); summer.add(new String("海"));
+    	summer.add(new String("アイス")); summer.add(new String("入道雲")); summer.add(new String("六月"));
+    	summer.add(new String("七月")); summer.add(new String("八月")); summer.add(new String("九月"));
+    	summer.add(new String("蛍")); summer.add(new String("ホタル")); summer.add(new String("ほたる"));
+    	summer.add(new String("サマー")); summer.add(new String("熱")); summer.add(new String("花火"));
+    	summer.add(new String("熱帯夜"));
+    	//季節　秋
+    	autumn.add(new String("秋")); autumn.add(new String("落ち葉")); autumn.add(new String("枯れ葉"));
+    	autumn.add(new String("九月")) ;autumn.add(new String("十月")); autumn.add(new String("十一月"));
+    	autumn.add(new String("ハロウィン"));
+    	//季節　冬
+    	winter.add(new String("冬")); winter.add(new String("枯れ木")); winter.add(new String("雪"));
+    	winter.add(new String("十二月")); winter.add(new String("一月")); winter.add(new String("二月"));
+    	winter.add(new String("マフラー")); winter.add(new String("イルミネーション")); winter.add(new String("クリスマス"));
+    	winter.add(new String("暖炉"));
     	
     	//天気sunny cloudy rain snow
     	category[4] = "晴　太陽　日ざし　日差し　陽射し　日光　暑";
@@ -188,9 +226,31 @@ public class Sanmoku extends Activity implements TextWatcher
 		Log.d("たしかめ","ボタン押された");
 	    for (int i = 0; i < noun_word.size(); i++){
 	    	Log.d("たしかめ", "配列" +i+ "の名詞" );
+	    	for(int j = 0; j < spring.size(); j++){
+	    		if (noun_word.get(i).contains(spring.get(j))){
+	    			season[0]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < summer.size(); j++){
+	    		if (noun_word.get(i).contains(summer.get(j))){
+	    			season[1]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < autumn.size(); j++){
+	    		if (noun_word.get(i).contains(autumn.get(j))){
+	    			season[2]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < winter.size(); j++){
+	    		if (noun_word.get(i).contains(winter.get(j))){
+	    			season[3]++;
+	    		}
+	    	}
+	    	/*
 	        for (int j = 0; j <(array - 3); j++){
 	        	Log.d("たしかめ", "配列" +j+ "の要素");
                 if (category[j].contains(noun_word.get(i))) {
+                	count = 0;
                 	switch (j){
                 	//季節
                 	  case 0:
@@ -248,6 +308,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 	//Log.d("どれにも","該当しない");
                 }
 	        }
+	        */
 	      }
 	    TextView label2 = (TextView) this.findViewById(R.id.label2);
 	    //ためしに表示
@@ -264,5 +325,6 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			   "　夕方の要素" + time[2] +
 	    			   " 夜の要素" + time[3] +
 	    			   " 深夜の要素" + time[4]);
+	    
 	}
 }
