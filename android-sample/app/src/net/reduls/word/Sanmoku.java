@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.Activity;
 import android.content.res.AssetManager; //アセット
@@ -37,10 +38,14 @@ public class Sanmoku extends Activity implements TextWatcher
 	int sunny = 0; int cloudy = 0; int rain = 0; int snow = 0;
 	int morning = 0; int noon = 0; int evening = 0; int night = 0; int midnight = 0;
 	
+	public int [] season = new int[4];
+	//0...春　1...夏　2...秋　3...冬
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	Arrays.fill(season, 0);
     	//季節 spring summer autumn winter
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
     	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
@@ -173,7 +178,7 @@ public class Sanmoku extends Activity implements TextWatcher
             
         }
         //test = noun_word.get(100);
-        label.setText("名詞の個数" + total + "試しに表示→" +noun_word.get(30) + "\n" + noun);
+        label.setText("名詞の個数" + total + "試しに表示→" +noun_word.get(54) + "\n" + noun);
         
 	}//解析ボタンクリックした処理終わり
 	//メモ
@@ -191,17 +196,21 @@ public class Sanmoku extends Activity implements TextWatcher
                 	  case 0:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　春");
                 		  spring++;
+                		  season[0]++;
                 		  break;
                 	  case 1:
                 		  summer++;
+                		  season[1]++;
                 		  break;
                 	  case 2:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　秋");
                 		  autumn++;
+                		  season[2]++;
                 		  break;
                 	  case 3:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　冬");
                 		  winter++;
+                		  season[3]++;
                 	    break;
                 	//天気
                 	  case 4:
@@ -246,10 +255,10 @@ public class Sanmoku extends Activity implements TextWatcher
 	      }
 	    TextView label2 = (TextView) this.findViewById(R.id.label2);
 	    //ためしに表示
-	    label2.setText(" 春の要素" + spring + 
-	    			   " 夏の要素" + summer + 
-	    			   " 秋の要素" + autumn +
-	    			   " 冬の要素" + winter +
+	    label2.setText(" 春の要素" + season[0] + 
+	    			   " 夏の要素" + season[1] + 
+	    			   " 秋の要素" + season[2] +
+	    			   " 冬の要素" + season[3] +
 	    			   " 晴れの要素" + sunny +
 	    			   " 曇りの要素" + cloudy +
 	    			   " 雨の要素" + rain +
