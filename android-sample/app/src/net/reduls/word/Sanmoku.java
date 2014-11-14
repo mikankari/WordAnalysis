@@ -96,12 +96,41 @@ public class Sanmoku extends Activity implements TextWatcher
     	category[6] = "雨　レイン　台風";
     	category[7] = "雪　冬　ソリ　スキー　暖炉";
     	
+    	//晴れ
+    	sunny.add(new String("晴")); sunny.add(new String("太陽")); sunny.add(new String("日差し"));
+    	sunny.add(new String("陽射し")); sunny.add(new String("日光")); sunny.add(new String("暑"));
+    	//曇り
+    	cloudy.add(new String("曇り")); cloudy.add(new String("曇り空")); cloudy.add(new String("積乱雲"));
+    	cloudy.add(new String("霧"));
+    	//雨
+    	rain.add(new String("雨")); rain.add(new String("レイン")); rain.add(new String("台風"));
+    	//雪
+    	snow.add(new String("雪")); snow.add(new String("冬")); snow.add(new String("ソリ"));
+    	snow.add(new String("スキー")); snow.add(new String("暖炉"));
+    	
     	//時間 morning noon evening night midnight
     	category[8] = "朝　明け方　太陽　日光　日差し　陽射し　おはよう";
     	category[9] = "昼　昼下がり";
     	category[10] = "夕　夕方";
     	category[11] = "夜　眠れない　おやすみ　朝まで　ナイト　ベッド　死　星　月　night";
     	category[12] = "深夜　午前二時　ベッド　ナイト";
+    	
+    	//朝
+    	morning.add(new String("朝")); morning.add(new String("明け方")); morning.add(new String("太陽"));
+    	morning.add(new String("日光")); morning.add(new String("陽射し")); morning.add(new String("日差し"));
+    	morning.add(new String("おはよう"));
+    	//昼
+    	noon.add(new String("昼")); noon.add(new String("弁当")); noon.add(new String("正午"));
+    	//夕
+    	evening.add(new String("夕"));
+    	//夜
+    	night.add(new String("夜")); night.add(new String("おやすみ")); night.add(new String("ナイト"));
+    	night.add(new String("ベッド")); night.add(new String("死")); night.add(new String("星"));
+    	night.add(new String("月")); night.add(new String("night")); night.add(new String("寝"));
+    	//深夜
+    	midnight.add(new String("深夜")); midnight.add(new String("午前二時")); midnight.add(new String("ベッド"));
+    	midnight.add(new String("ナイト")); midnight.add(new String("寝"));
+    	
     	//場所
     	//山　海
     	
