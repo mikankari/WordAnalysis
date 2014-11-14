@@ -32,9 +32,9 @@ public class Sanmoku extends Activity implements TextWatcher
 	//可変長配列
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	//歌詞リスト
-	int array = 15;
+	//int array = 15;
 	int count = 0;
-	public String[] category = new String[array];
+	//public String[] category = new String[array];
 	//歌詞の分類
 	public int[] season = new int[4]; //0...春　1...夏　2...秋　3...冬
 	public int[] weather = new int[4]; //0...晴れ　1...曇り　2...雨　3...雪
@@ -64,13 +64,8 @@ public class Sanmoku extends Activity implements TextWatcher
     	Arrays.fill(season, 0);
     	Arrays.fill(weather, 0);
     	Arrays.fill(time, 0);
-    	//季節 spring summer autumn winter
-    	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
-    	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
-    	category[2] = "秋　落ち葉　枯れ葉　九月　十月　十一月　ハロウィン";
-    	category[3] = "冬　枯れ木　雪　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
-    	
     	//↓これらはサーバーにおくのか？↓
+    	//季節 spring summer autumn winte	r
     	//季節　春
     	spring.add(new String("春")); spring.add(new String("桜")); spring.add(new String("さくら"));
     	spring.add(new String("サクラ")); spring.add(new String("三月")); spring.add(new String("四月"));
@@ -90,14 +85,9 @@ public class Sanmoku extends Activity implements TextWatcher
     	winter.add(new String("冬")); winter.add(new String("枯れ木")); winter.add(new String("雪"));
     	winter.add(new String("十二月")); winter.add(new String("一月")); winter.add(new String("二月"));
     	winter.add(new String("マフラー")); winter.add(new String("イルミネーション")); winter.add(new String("クリスマス"));
-    	winter.add(new String("暖炉"));
+    	winter.add(new String("暖炉")); winter.add(new String("サンタ")); winter.add(new String("霜"));
     	
     	//天気sunny cloudy rain snow
-    	category[4] = "晴　太陽　日ざし　日差し　陽射し　日光　暑";
-    	category[5] = "曇り空　雲　曇り　積乱雲　霧";
-    	category[6] = "雨　レイン　台風";
-    	category[7] = "雪　冬　ソリ　スキー　暖炉";
-    	
     	//晴れ
     	sunny.add(new String("晴")); sunny.add(new String("太陽")); sunny.add(new String("日差し"));
     	sunny.add(new String("陽射し")); sunny.add(new String("日光")); sunny.add(new String("暑"));
@@ -111,12 +101,6 @@ public class Sanmoku extends Activity implements TextWatcher
     	snow.add(new String("スキー")); snow.add(new String("暖炉")); snow.add(new String("バレンタイン"));
     	
     	//時間 morning noon evening night midnight
-    	category[8] = "朝　明け方　太陽　日光　日差し　陽射し　おはよう";
-    	category[9] = "昼　昼下がり";
-    	category[10] = "夕　夕方";
-    	category[11] = "夜　眠れない　おやすみ　朝まで　ナイト　ベッド　死　星　月　night";
-    	category[12] = "深夜　午前二時　ベッド　ナイト";
-    	
     	//朝
     	morning.add(new String("朝")); morning.add(new String("明け方")); morning.add(new String("太陽"));
     	morning.add(new String("日光")); morning.add(new String("陽射し")); morning.add(new String("日差し"));
@@ -129,6 +113,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	night.add(new String("夜")); night.add(new String("おやすみ")); night.add(new String("ナイト"));
     	night.add(new String("ベッド")); night.add(new String("死")); night.add(new String("星"));
     	night.add(new String("月")); night.add(new String("night")); night.add(new String("寝"));
+    	night.add(new String("闇")); night.add(new String("暗"));
     	//深夜
     	midnight.add(new String("深夜")); midnight.add(new String("午前二時")); midnight.add(new String("ベッド"));
     	midnight.add(new String("ナイト")); midnight.add(new String("寝")); night.add(new String("晩"));
@@ -205,7 +190,8 @@ public class Sanmoku extends Activity implements TextWatcher
 				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
 				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
 				//is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
-				is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
+				//is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
+				is = as.open("kogane_no_seiya.txt"); //金の聖夜霜雪に朽ちて
 				
 				br = new BufferedReader(new InputStreamReader(is));
 
