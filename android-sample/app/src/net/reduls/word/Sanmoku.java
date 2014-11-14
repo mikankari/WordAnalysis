@@ -61,7 +61,9 @@ public class Sanmoku extends Activity implements TextWatcher
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	//Arrays.fill(season, 0);
+    	Arrays.fill(season, 0);
+    	Arrays.fill(weather, 0);
+    	Arrays.fill(time, 0);
     	//季節 spring summer autumn winter
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
     	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
@@ -198,13 +200,15 @@ public class Sanmoku extends Activity implements TextWatcher
 		try {
 			try {
 				//歌詞を読み込む
-				is = as.open("hotlimit.txt");
+				//is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
+				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
+				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
+				is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
 				br = new BufferedReader(new InputStreamReader(is));
 
 				String str;
 				while ((str = br.readLine()) != null) {
 					sb.append(str + "\n");
-					//song=new String(str);
 				}
 			} finally {
 				if (br != null)
@@ -252,9 +256,12 @@ public class Sanmoku extends Activity implements TextWatcher
 	//tf法
 	//単語の頻度／文章で出現する総単語数
 	private void wordanalysisbotton_OnClick(View v) {
-		Log.d("たしかめ","ボタン押された");
+	   	Arrays.fill(season, 0);
+    	Arrays.fill(weather, 0);
+    	Arrays.fill(time, 0);
 	    for (int i = 0; i < noun_word.size(); i++){
 	    	Log.d("たしかめ", "配列" +i+ "の名詞" );
+	    	//季節
 	    	for(int j = 0; j < spring.size(); j++){
 	    		if (noun_word.get(i).contains(spring.get(j))){
 	    			season[0]++;
@@ -275,73 +282,59 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			season[3]++;
 	    		}
 	    	}
-	    	/*
-	        for (int j = 0; j <(array - 3); j++){
-	        	Log.d("たしかめ", "配列" +j+ "の要素");
-                if (category[j].contains(noun_word.get(i))) {
-                	count = 0;
-                	switch (j){
-                	//季節
-                	  case 0:
-                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　春");
-                		  season[0]++;
-                		  break;
-                	  case 1:
-                		  season[1]++;
-                		  break;
-                	  case 2:
-                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　秋");
-                		  season[2]++;
-                		  break;
-                	  case 3:
-                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　冬");
-                		  season[3]++;
-                	    break;
-                	//天気
-                	  case 4:
-                		  weather[0]++;
-                		  break;
-                	  case 5:
-                		  weather[1]++;
-                		  break;
-                  	  case 6:
-                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雨");
-                  		  weather[2]++;
-                  		  break;
-                  	  case 7:
-                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雪");
-                  		  weather[3]++;
-                  	      break;
-                  	//時間帯
-                  	  case 8:
-                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　朝");
-                  		  time[0]++;
-                  		  break;
-                  	  case 9:
-                  		  time[1]++;
-                  		  break;
-                  	  case 10:
-                  		  time[2]++;
-                  	      break;
-                  	  case 11:
-                  		  time[3]++;
-                    	  break;
-                  	  case 12:
-                  	      time[4]++;
-                    	  break;
-                      default:
-   
-                    	  break;
-                	}
-                }else{
-                	//Log.d("どれにも","該当しない");
-                }
-	        }
-	        */
+	    	
+	    	//天気
+	    	for(int j = 0; j < sunny.size(); j++){
+	    		if (noun_word.get(i).contains(sunny.get(j))){
+	    			weather[0]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < cloudy.size(); j++){
+	    		if (noun_word.get(i).contains(cloudy.get(j))){
+	    			weather[1]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < rain.size(); j++){
+	    		if (noun_word.get(i).contains(rain.get(j))){
+	    			weather[2]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < snow.size(); j++){
+	    		if (noun_word.get(i).contains(snow.get(j))){
+	    			weather[3]++;
+	    		}
+	    	}
+	    	
+	    	//時間
+	    	for(int j = 0; j < morning.size(); j++){
+	    		if (noun_word.get(i).contains(morning.get(j))){
+	    			time[0]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < noon.size(); j++){
+	    		if (noun_word.get(i).contains(noon.get(j))){
+	    			time[1]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < evening.size(); j++){
+	    		if (noun_word.get(i).contains(evening.get(j))){
+	    			time[2]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < night.size(); j++){
+	    		if (noun_word.get(i).contains(night.get(j))){
+	    			time[3]++;
+	    		}
+	    	}
+	    	for(int j = 0; j < midnight.size(); j++){
+	    		if (noun_word.get(i).contains(midnight.get(j))){
+	    			time[4]++;
+	    		}
+	    	}
 	      }
 	    TextView label2 = (TextView) this.findViewById(R.id.label2);
 	    //ためしに表示
-	    label2.setText(" 春の要素" + season[0] + 
+	    label2.setText("春の要素" + season[0] + 
 	    			   " 夏の要素" + season[1] + 
 	    			   " 秋の要素" + season[2] +
 	    			   " 冬の要素" + season[3] +
