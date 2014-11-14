@@ -117,6 +117,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	//深夜
     	midnight.add(new String("深夜")); midnight.add(new String("午前二時")); midnight.add(new String("ベッド"));
     	midnight.add(new String("ナイト")); midnight.add(new String("寝")); night.add(new String("晩"));
+    	midnight.add(new String("霊"));
     	
     	//場所
     	//山　海

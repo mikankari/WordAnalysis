@@ -43,7 +43,7 @@
             android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="ここに名詞の一覧を表示" />
     </ScrollView>
 
     <Button
@@ -62,7 +62,7 @@
             android:id="@+id/label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="ここに各要素の個数を表示" />
 
     </ScrollView>
 
