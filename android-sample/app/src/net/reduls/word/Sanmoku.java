@@ -201,10 +201,12 @@ public class Sanmoku extends Activity implements TextWatcher
 		try {
 			try {
 				//歌詞を読み込む
-				is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
+				//is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
 				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
 				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
 				//is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
+				is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
+				
 				br = new BufferedReader(new InputStreamReader(is));
 
 				String str;
@@ -253,9 +255,7 @@ public class Sanmoku extends Activity implements TextWatcher
         label.setText("名詞の個数" + total + "試しに表示→" +noun_word.get(54) + "\n" + noun);
         
 	}//解析ボタンクリックした処理終わり
-	//メモ
-	//tf法
-	//単語の頻度／文章で出現する総単語数
+
 	private void wordanalysisbotton_OnClick(View v) {
 	   	Arrays.fill(season, 0);
     	Arrays.fill(weather, 0);
