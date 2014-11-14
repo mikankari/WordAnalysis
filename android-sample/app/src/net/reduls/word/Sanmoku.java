@@ -56,7 +56,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	//時間 morning noon evening night midnight
     	category[8] = "朝　明け方　太陽　日光　日差し　陽射し　おはよう";
     	category[9] = "昼　昼下がり";
-    	category[10] = "夕　夕方　";
+    	category[10] = "夕　夕方";
     	category[11] = "夜　眠れない　おやすみ　朝まで　ナイト　ベッド　死　星　月　night";
     	category[12] = "深夜　午前二時　ベッド　ナイト";
     	//場所
