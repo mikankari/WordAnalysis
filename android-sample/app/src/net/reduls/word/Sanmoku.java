@@ -45,7 +45,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	category[0] = "春　桜　さくら　サクラ　三月　四月　五月　蝶　卒業";
     	category[1] = "夏　梅雨　海　アイス　入道雲　六月　七月　八月　蛍　ホタル　ほたる　サマー　熱　花火　熱帯夜";
     	category[2] = "秋　落ち葉　枯れ葉　九月　十月　十一月　ハロウィン";
-    	category[3] = "冬　枯れ木　雪　　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
+    	category[3] = "冬　枯れ木　雪　十二月　一月　二月　マフラー　イルミネーション　クリスマス　暖炉";
     	
     	//天気sunny cloudy rain snow
     	category[4] = "晴　太陽　日ざし　日差し　陽射し　日光　暑";
@@ -173,7 +173,7 @@ public class Sanmoku extends Activity implements TextWatcher
             
         }
         //test = noun_word.get(100);
-        label.setText("名詞の個数" + total + "最後の名詞（配列120番目）→" +noun_word.get(120) + "\n" + noun);
+        label.setText("名詞の個数" + total + "試しに表示→" +noun_word.get(30) + "\n" + noun);
         
 	}//解析ボタンクリックした処理終わり
 	//メモ
@@ -182,20 +182,25 @@ public class Sanmoku extends Activity implements TextWatcher
 	private void wordanalysisbotton_OnClick(View v) {
 		Log.d("たしかめ","ボタン押された");
 	    for (int i = 0; i < noun_word.size(); i++){
+	    	Log.d("たしかめ", "配列" +i+ "の名詞" );
 	        for (int j = 0; j <(array - 3); j++){
+	        	Log.d("たしかめ", "配列" +j+ "の要素");
                 if (category[j].contains(noun_word.get(i))) {
                 	switch (j){
                 	//季節
                 	  case 0:
+                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　春");
                 		  spring++;
                 		  break;
                 	  case 1:
                 		  summer++;
                 		  break;
                 	  case 2:
+                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　秋");
                 		  autumn++;
                 		  break;
                 	  case 3:
+                		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　冬");
                 		  winter++;
                 	    break;
                 	//天気
@@ -206,13 +211,16 @@ public class Sanmoku extends Activity implements TextWatcher
                 		  cloudy++;
                 		  break;
                   	  case 6:
+                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雨");
                   		  rain++;
                   		  break;
                   	  case 7:
+                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雪");
                   		  snow++;
                   	    break;
                   	//時間帯
                   	  case 8:
+                  		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　朝");
                   		  morning++;
                   		  break;
                   	  case 9:
@@ -227,7 +235,12 @@ public class Sanmoku extends Activity implements TextWatcher
                   	  case 12:
                     	  midnight++;
                     	  break;
+                      default:
+   
+                    	  break;
                 	}
+                }else{
+                	//Log.d("どれにも","該当しない");
                 }
 	        }
 	      }
@@ -247,5 +260,4 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			   " 夜の要素" + night +
 	    			   " 深夜の要素" + midnight);
 	}
-
 }
