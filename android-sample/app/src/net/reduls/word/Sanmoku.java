@@ -34,12 +34,12 @@ public class Sanmoku extends Activity implements TextWatcher
 	int array = 15;
 	public String[] category = new String[array];
 	//歌詞の分類
-	int spring = 0; int summer = 0; int autumn = 0; int winter = 0;
-	int sunny = 0; int cloudy = 0; int rain = 0; int snow = 0;
-	int morning = 0; int noon = 0; int evening = 0; int night = 0; int midnight = 0;
-	
 	public int [] season = new int[4];
 	//0...春　1...夏　2...秋　3...冬
+	public int [] weather = new int[4];
+	//0...晴れ　1...曇り　2...雨　3...雪
+	public int [] time = new int[5];
+	//0...朝　1...昼　2...夕　3...夜　4...深夜
 	
     /** Called when the activity is first created. */
     @Override
@@ -195,54 +195,50 @@ public class Sanmoku extends Activity implements TextWatcher
                 	//季節
                 	  case 0:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　春");
-                		  spring++;
                 		  season[0]++;
                 		  break;
                 	  case 1:
-                		  summer++;
                 		  season[1]++;
                 		  break;
                 	  case 2:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　秋");
-                		  autumn++;
                 		  season[2]++;
                 		  break;
                 	  case 3:
                 		  Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　冬");
-                		  winter++;
                 		  season[3]++;
                 	    break;
                 	//天気
                 	  case 4:
-                		  sunny++;
+                		  weather[0]++;
                 		  break;
                 	  case 5:
-                		  cloudy++;
+                		  weather[1]++;
                 		  break;
                   	  case 6:
                   		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雨");
-                  		  rain++;
+                  		  weather[2]++;
                   		  break;
                   	  case 7:
                   		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　雪");
-                  		  snow++;
-                  	    break;
+                  		  weather[3]++;
+                  	      break;
                   	//時間帯
                   	  case 8:
                   		Log.d("たしかめ","　　　　　　　　　　　　　　　　　　　　　　　　　朝");
-                  		  morning++;
+                  		  time[0]++;
                   		  break;
                   	  case 9:
-                  		  noon++;
+                  		  time[1]++;
                   		  break;
                   	  case 10:
-                  	      evening++;
+                  		  time[2]++;
                   	      break;
                   	  case 11:
-                    	  night++;
+                  		  time[3]++;
                     	  break;
                   	  case 12:
-                    	  midnight++;
+                  	      time[4]++;
                     	  break;
                       default:
    
@@ -259,14 +255,14 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			   " 夏の要素" + season[1] + 
 	    			   " 秋の要素" + season[2] +
 	    			   " 冬の要素" + season[3] +
-	    			   " 晴れの要素" + sunny +
-	    			   " 曇りの要素" + cloudy +
-	    			   " 雨の要素" + rain +
-	    			   " 雪の要素" + snow +
-	    			   " 朝の要素" + morning +
-	    			   " 昼の要素" + noon +
-	    			   "　夕方の要素" + evening +
-	    			   " 夜の要素" + night +
-	    			   " 深夜の要素" + midnight);
+	    			   " 晴れの要素" + weather[0] +
+	    			   " 曇りの要素" + weather[1] +
+	    			   " 雨の要素" + weather[2] +
+	    			   " 雪の要素" + weather[3] +
+	    			   " 朝の要素" + time[0] +
+	    			   " 昼の要素" + time[1] +
+	    			   "　夕方の要素" + time[2] +
+	    			   " 夜の要素" + time[3] +
+	    			   " 深夜の要素" + time[4]);
 	}
 }
