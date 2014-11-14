@@ -142,11 +142,12 @@ public class Sanmoku extends Activity implements TextWatcher
         View searchBar = findViewById(R.id.search_bar);
         ((EditText)searchBar).addTextChangedListener(this);
 
+
         String key = getIntent().getStringExtra("search.key");
         getIntent().putExtra("search.key","");
         if(key!=null && key.equals("")==false)
             ((EditText)searchBar).setText(key);
-        
+    	
         //ボタンクリック処理
         //形態素解析ボタン
 		Button analysbtn = (Button) this.findViewById(R.id.analysbtn);
@@ -200,10 +201,10 @@ public class Sanmoku extends Activity implements TextWatcher
 		try {
 			try {
 				//歌詞を読み込む
-				//is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
+				is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
 				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
 				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
-				is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
+				//is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
 				br = new BufferedReader(new InputStreamReader(is));
 
 				String str;
