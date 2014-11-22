@@ -1,16 +1,21 @@
 package net.reduls.word;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.BufferedInputStream; 
+import java.io.FileInputStream; 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.io.File;
 
 import android.app.Activity;
 import android.content.res.AssetManager; //アセット
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -35,6 +40,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	//歌詞リスト
 	int count = 0;
 	String title = "";
+	String text = ""; //書き込みテキスト用
 	//public String[] category = new String[array];
 	//歌詞の分類
 	public int[] season = new int[4]; //0...春　1...夏　2...秋　3...冬
@@ -81,6 +87,9 @@ public class Sanmoku extends Activity implements TextWatcher
 	public ArrayList<String> night = new ArrayList<String>();
 	public ArrayList<String> midnight = new ArrayList<String>();
 	
+	Handler handler = new Handler();
+	Context context = this;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -89,7 +98,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	Arrays.fill(weather, 0);
     	Arrays.fill(time, 0);
     	//↓これらはサーバーにおくのか？↓
-    	//季節 spring summer autumn winte	r
+    	//季節 spring summer autumn winter
     	//季節　春
     	spring.add(new String("春")); spring.add(new String("桜")); spring.add(new String("さくら"));
     	spring.add(new String("サクラ")); spring.add(new String("三月")); spring.add(new String("四月"));
@@ -148,6 +157,29 @@ public class Sanmoku extends Activity implements TextWatcher
     	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        //ファイル書き込み
+        new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO 自動生成されたメソッド・スタブ
+				
+				handler.post(new Runnable(){
+					
+				
+
+					@Override
+					public void run() {
+						// TODO 自動生成されたメソッド・スタブ
+					
+					}
+				
+				});
+        	
+			}
+        }).start();
+    
 
         View searchBar = findViewById(R.id.search_bar);
         ((EditText)searchBar).addTextChangedListener(this);
@@ -215,8 +247,8 @@ public class Sanmoku extends Activity implements TextWatcher
 				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
 				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
 				//is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
-				//is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
-				is = as.open("kogane_no_seiya.txt"); //金の聖夜霜雪に朽ちて
+				is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
+				//is = as.open("kogane_no_seiya.txt"); //金の聖夜霜雪に朽ちて
 				
 				br = new BufferedReader(new InputStreamReader(is));
 
@@ -225,8 +257,9 @@ public class Sanmoku extends Activity implements TextWatcher
 				while ((str = br.readLine()) != null) {
 					cou++;
 					sb.append(str + "\n");
+					//一行目がタイトルのため
 					if(cou == 1){
-						title = str;
+						title = str; //タイトルとして記憶
 					}
 				}
 			} finally {
@@ -268,7 +301,7 @@ public class Sanmoku extends Activity implements TextWatcher
             
         }
         //test = noun_word.get(100);
-        label.setText("名詞の個数" + total + "試しに表示→" +noun_word.get(54) + "\n" + noun);
+        label.setText("名詞の個数" + total + "個　20番目の名詞を試しに表示→" +noun_word.get(19) + "\n" + noun);
         
 	}//解析ボタンクリックした処理終わり
 
@@ -418,8 +451,12 @@ public class Sanmoku extends Activity implements TextWatcher
 	    		tim = "深夜";
 	    		break;
 	    }
-	    label2.setText("この曲" + title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
+	    //label2.setText(title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
 	    
-	    
+	    text = "";
+		text += "書き込み結果：" + FileWriter.writePrivateFile(context, "test.txt", title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim ) + "\n";
+		text += "読み込み結果：" + FileWriter.readPrivateFile(context, "test.txt") + "\n";
+		label2.setText(text);
 	}
+	
 }
