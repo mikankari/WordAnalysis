@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.io.File;
 
 import android.app.Activity;
 import android.content.res.AssetManager; //アセット
@@ -33,6 +34,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	//歌詞リスト
 	int count = 0;
+	String title = "";
 	//public String[] category = new String[array];
 	//歌詞の分類
 	public int[] season = new int[4]; //0...春　1...夏　2...秋　3...冬
@@ -219,8 +221,13 @@ public class Sanmoku extends Activity implements TextWatcher
 				br = new BufferedReader(new InputStreamReader(is));
 
 				String str;
+				int cou = 0;
 				while ((str = br.readLine()) != null) {
+					cou++;
 					sb.append(str + "\n");
+					if(cou == 1){
+						title = str;
+					}
 				}
 			} finally {
 				if (br != null)
@@ -411,7 +418,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	    		tim = "深夜";
 	    		break;
 	    }
-	    label2.setText("この曲の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
+	    label2.setText("この曲" + title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
 	    
 	    
 	}
