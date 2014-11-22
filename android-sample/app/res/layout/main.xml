@@ -4,34 +4,25 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="64dp"
-        android:orientation="vertical" >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="歌詞解析"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <LinearLayout
-            android:id="@+id/search_result_area"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
-
-            <EditText
-                android:id="@+id/search_bar"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" >
-
-                <requestFocus />
-            </EditText>
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="「名詞の抽出」で歌詞の名詞だけを抽出して表示\n「解析」で季節、天気、時間に応じた単語を見つけ出しそれぞれのカテゴリの要素を数える"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/analysbtn"
         android:layout_width="153dp"
         android:layout_height="wrap_content"
-        android:text="形態素" />
+        android:text="名詞の抽出" />
 
     <ScrollView
         android:id="@+id/scrollView1"

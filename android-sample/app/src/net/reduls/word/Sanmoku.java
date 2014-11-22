@@ -146,7 +146,7 @@ public class Sanmoku extends Activity implements TextWatcher
     	night.add(new String("夜")); night.add(new String("おやすみ")); night.add(new String("ナイト"));
     	night.add(new String("ベッド")); night.add(new String("死")); night.add(new String("星"));
     	night.add(new String("月")); night.add(new String("night")); night.add(new String("寝"));
-    	night.add(new String("闇")); night.add(new String("暗"));
+    	night.add(new String("闇")); night.add(new String("暗")); night.add(new String("夢"));
     	//深夜
     	midnight.add(new String("深夜")); midnight.add(new String("午前二時")); midnight.add(new String("ベッド"));
     	midnight.add(new String("ナイト")); midnight.add(new String("寝")); night.add(new String("晩"));
@@ -179,17 +179,7 @@ public class Sanmoku extends Activity implements TextWatcher
         	
 			}
         }).start();
-    
-
-        View searchBar = findViewById(R.id.search_bar);
-        ((EditText)searchBar).addTextChangedListener(this);
-
-
-        String key = getIntent().getStringExtra("search.key");
-        getIntent().putExtra("search.key","");
-        if(key!=null && key.equals("")==false)
-            ((EditText)searchBar).setText(key);
-    	
+            
         //ボタンクリック処理
         //形態素解析ボタン
 		Button analysbtn = (Button) this.findViewById(R.id.analysbtn);
@@ -219,15 +209,13 @@ public class Sanmoku extends Activity implements TextWatcher
     public void afterTextChanged(Editable s) {
         String key = s.toString();
         //String key = "YO! SAY! 夏が胸を刺激する 生足魅惑のマーメイド 出すとこだして たわわになったら 宝物の恋は やれ爽快 誤魔化し聞かない 薄着の曲線は 確信犯の しなやかなSTYLE 耐水性の 気持ちに切り替わる  瞬間のまぶしさは いかがなもの 心まで脱がされる 熱い風の誘惑に 負けちゃって構わないから 真夏は 不祥事も 君次第で 妖精たちが 夏を刺激する 生足魅惑のマーメイド 出すとこだして たわわになったら 宝物の恋が できそうかい 君じゃなくても バテ気味にもなるよ 暑いばっかの 街は憂鬱で スキを見せたら 不意に耳に入る サブいギャグなんかで 涼みたくない むせ返る熱帯夜を 彩る花火のように 打ち上げて散る思いなら  このまま抱き合って 焦がれるまで 妖精たちと 夏をしたくなる 熱い欲望はトルネイド 出すものだして 素直になりたい 君と僕となら it`s all right 都会のビルの上じゃ 感じなくなってる君を 冷えたワインの口づけで 酔わせて とろかせて 差し上げましょう 妖精たちが 夏を刺激する 生足ヘソ出しマーメイド 恋にかまけて お留守になるのも ダイスケ的にも オールオーケー YO! SAY! 夏を誰としたくなる 一人根の夜に you can say good bye 奥の方まで 乾く間ないほど 宝物の恋を しま鮮花";
-    	LinearLayout resultArea = (LinearLayout)findViewById(R.id.search_result_area);
-        resultArea.removeAllViews();
+
         
         if(key.length() > 0) { 
             for(net.reduls.sanmoku.Morpheme e : net.reduls.sanmoku.Tagger.parse(key)) {
                 TextView txt = new TextView(this);
                 SpannableString spannable = DataFormatter.format("<"+e.surface+">\n"+e.feature);
                 txt.setText(spannable, TextView.BufferType.SPANNABLE);
-                resultArea.addView(txt);
             }
         }
     }
@@ -244,11 +232,12 @@ public class Sanmoku extends Activity implements TextWatcher
 			try {
 				//歌詞を読み込む
 				//is = as.open("hotlimit.txt"); //HOT LIMIT 夏の歌
-				//is = as.open("roshin_yuukai.txt"); //炉心融解　春で夜、深夜の歌
+				//is = as.open("roshin_yuukai.txt"); //炉心融解　春か夏で夜、深夜の歌
 				//is = as.open("sakura_no_kisetsu.txt"); //桜の季節　春の歌
 				//is = as.open("utsukushiki_mono.txt"); //美しきもの　朝夜春夏秋冬全部の歌
-				is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
-				//is = as.open("kogane_no_seiya.txt"); //金の聖夜霜雪に朽ちて
+				//is = as.open("himitsu_no_mori_no_butoukai.txt"); //秘密の森の舞踏会　夜の歌
+				//is = as.open("hoshino_ginka_atsumete.txt"); //星の銀貨あつめて　夜の歌
+				is = as.open("kogane_no_seiya.txt"); //金の聖夜霜雪に朽ちて
 				
 				br = new BufferedReader(new InputStreamReader(is));
 
@@ -272,8 +261,8 @@ public class Sanmoku extends Activity implements TextWatcher
 		//解析用の文字列にファイルの中身（sb）をコピー
 		String key =new String(sb);
 		//↓リザルトエリアに表示しますよーのやつ？
-    	LinearLayout resultArea = (LinearLayout)findViewById(R.id.search_result_area);
-        resultArea.removeAllViews();
+    	//LinearLayout resultArea = (LinearLayout)findViewById(R.id.search_result_area);
+        //resultArea.removeAllViews();
         
         TextView label = (TextView) this.findViewById(R.id.label);
         
@@ -283,7 +272,7 @@ public class Sanmoku extends Activity implements TextWatcher
                 SpannableString spannable = DataFormatter.format("<"+e.surface+">\n"+e.feature);
                 txt.setText(spannable, TextView.BufferType.SPANNABLE);
                 //String word = new String(spannable, TextView.BufferType.SPANNABLE);
-                resultArea.addView(txt); //結果の表示
+                //resultArea.addView(txt); //結果の表示
                 //e.surface　は　元の単語
                 //e.feature　は　品詞
                 
@@ -399,7 +388,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			   " 夜の要素" + time[3] +
 	    			   " 深夜の要素" + time[4]);
 	    */
-	    
+
 	    s = maxIndex(season);
 	    w = maxIndex(weather);
 	    t = maxIndex(time);
@@ -451,11 +440,37 @@ public class Sanmoku extends Activity implements TextWatcher
 	    		tim = "深夜";
 	    		break;
 	    }
+
+	    if(season[0] == 0 && season[1] == 0 && season[2] == 0 && season[3] == 0){
+	    	sea = "不明";
+	    }
+	    if(weather[0] == 0 && weather[1] == 0 && weather[2] == 0 && weather[3] == 0){
+	    	wea = "不明";
+	    }
+	    if(time[0] == 0 && time[1] == 0 && time[2] == 0 && time[3] == 0){
+	    	tim = "不明";
+	    }
+	    
+	    
 	    //label2.setText(title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
 	    
 	    text = "";
 		text += "次の結果をファイルに書き込みました:\n" + FileWriter.writePrivateFile(context, "test.txt", title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim ) + "\n";
-		text += "ファイルの内容を表示:\n" + FileWriter.readPrivateFile(context, "test.txt") + "\n";
+		text += "ファイルの内容を表示:\n" + FileWriter.readPrivateFile(context, "test.txt") + "\n\n";
+		text += ("春の要素" + season[0] + 
+ 			   " \n夏の要素" + season[1] + 
+ 			   " \n秋の要素" + season[2] +
+ 			   " \n冬の要素" + season[3] +
+ 			   " \n晴れの要素" + weather[0] +
+ 			   " \n曇りの要素" + weather[1] +
+ 			   " \n雨の要素" + weather[2] +
+ 			   " \n雪の要素" + weather[3] +
+ 			   " \n朝の要素" + time[0] +
+ 			   " \n昼の要素" + time[1] +
+ 			   "　\n夕方の要素" + time[2] +
+ 			   " \n夜の要素" + time[3] +
+ 			   " \n深夜の要素" + time[4]);
+		
 		label2.setText(text);
 	}
 	
