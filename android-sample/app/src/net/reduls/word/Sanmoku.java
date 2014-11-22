@@ -32,13 +32,35 @@ public class Sanmoku extends Activity implements TextWatcher
 	//可変長配列
 	public ArrayList<String> noun_word = new ArrayList<String>(); //抽出した名詞いれる
 	//歌詞リスト
-	//int array = 15;
 	int count = 0;
 	//public String[] category = new String[array];
 	//歌詞の分類
 	public int[] season = new int[4]; //0...春　1...夏　2...秋　3...冬
 	public int[] weather = new int[4]; //0...晴れ　1...曇り　2...雨　3...雪
 	public int[] time = new int[5]; //0...朝　1...昼　2...夕　3...夜　4...深夜
+	
+	//カテゴリ判定用
+	int s = 0;
+	int w = 0;
+	int t = 0;
+	String sea;
+	String wea;
+	String tim;
+	
+	//大きい配列番号を返す
+	public int maxIndex(int[] array){
+		int max = Integer.MIN_VALUE;
+		int max_index = -1;
+		if(array != null){
+			for(int i =1; i < array.length; i++){
+				if(max < array[i]){
+					max = array[i];
+					max_index = i;
+				}
+			}
+		}
+	return max_index;
+	}
 	
 	//単語
 	public ArrayList<String> spring = new ArrayList<String>();
@@ -322,6 +344,7 @@ public class Sanmoku extends Activity implements TextWatcher
 	      }
 	    TextView label2 = (TextView) this.findViewById(R.id.label2);
 	    //ためしに表示
+	    /*
 	    label2.setText("春の要素" + season[0] + 
 	    			   " 夏の要素" + season[1] + 
 	    			   " 秋の要素" + season[2] +
@@ -335,6 +358,61 @@ public class Sanmoku extends Activity implements TextWatcher
 	    			   "　夕方の要素" + time[2] +
 	    			   " 夜の要素" + time[3] +
 	    			   " 深夜の要素" + time[4]);
+	    */
+	    
+	    s = maxIndex(season);
+	    w = maxIndex(weather);
+	    t = maxIndex(time);
+	    
+	    switch(s){
+	    	case 0:
+	    		sea = "春";
+	    		break;
+	    	case 1:
+	    		sea = "夏";
+	    		break;
+	    	case 2:
+	    		sea = "秋";
+	    		break;
+	    	case 3:
+	    		sea = "冬";
+	    		break;
+	    }
+	    
+	    switch(w){
+	    	case 0:
+	    		wea = "晴れ";
+	    		break;
+	    	case 1:
+	    		wea = "曇り";
+	    		break;
+	    	case 2:
+	    		wea = "雨";
+	    		break;
+	    	case 3:
+	    		wea = "雪";
+	    		break;
+	    }
+	    
+	    switch(t){
+	    	case 0:
+	    		tim = "朝";
+	    		break;
+	    	case 1:
+	    		tim = "昼";
+	    		break;
+	    	case 2:
+	    		tim = "夕方";
+	    		break;
+	    	case 3:
+	    		tim = "夜";
+	    		break;
+	    	case 4:
+	    		tim = "深夜";
+	    		break;
+	    }
+	    label2.setText("この曲の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
+	    
 	    
 	}
 }
