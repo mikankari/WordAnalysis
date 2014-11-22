@@ -454,8 +454,8 @@ public class Sanmoku extends Activity implements TextWatcher
 	    //label2.setText(title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim );
 	    
 	    text = "";
-		text += "書き込み結果：" + FileWriter.writePrivateFile(context, "test.txt", title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim ) + "\n";
-		text += "読み込み結果：" + FileWriter.readPrivateFile(context, "test.txt") + "\n";
+		text += "次の結果をファイルに書き込みました:\n" + FileWriter.writePrivateFile(context, "test.txt", title + "の季節は" + sea + "　天気は" + wea + "　時間は" + tim ) + "\n";
+		text += "ファイルの内容を表示:\n" + FileWriter.readPrivateFile(context, "test.txt") + "\n";
 		label2.setText(text);
 	}
 	
