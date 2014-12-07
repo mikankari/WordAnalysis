@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="歌詞解析"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="「名詞の抽出」で歌詞の名詞だけを抽出して表示\n「解析」で季節、天気、時間に応じた単語を見つけ出しそれぞれのカテゴリの要素を数える"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/analysbtn"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:text="名詞の抽出" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.14" >
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ここに名詞の一覧を表示" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/analysisbtn"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:text="解析" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.34" >
+
+        <TextView
+            android:id="@+id/label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ここに各要素の個数を表示" />
+
+    </ScrollView>
+
+</LinearLayout>
